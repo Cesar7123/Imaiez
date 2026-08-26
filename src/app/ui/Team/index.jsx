@@ -17,7 +17,7 @@ export default function Team({
       </Div>
       <Div className="cs-member_info">
         <h2 className="cs-member_name">
-          <Link href="/team/team-details">{memberName}</Link>
+          <Link href="/contact">{memberName}</Link>
         </h2>
         <Div className="cs-member_designation">{memberDesignation}</Div>
       </Div>
