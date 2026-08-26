@@ -64,22 +64,22 @@ const funfaceData = [
 const showcaseData = [
   {
     title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: '/images/slider_1.jpeg',
+    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     href: '/portfolio/portfolio-details',
   },
   {
     title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: '/images/slider_2.jpeg',
+    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     href: '/portfolio/portfolio-details',
   },
   {
     title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: '/images/slider_3.jpeg',
+    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     href: '/portfolio/portfolio-details',
   },
   {
     title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: '/images/slider_4.jpeg',
+    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     href: '/portfolio/portfolio-details',
   },
 ];

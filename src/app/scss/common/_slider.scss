@@ -375,7 +375,7 @@
     margin: 15px 0 !important;
     font-size: 21px;
     font-weight: 600;
-    color: #fff;
+    color: $white;
     &::before {
       display: none;
     }
@@ -448,7 +448,7 @@
   position: absolute;
   z-index: 11;
   font-weight: 600;
-  color: #fff;
+  color: $white;
   bottom: 48px;
   display: inline-flex;
   align-items: center;

@@ -13,13 +13,14 @@
 }
 .cs-hero_social_title {
   position: relative;
+  color: $sand;
   padding-bottom: 35px;
   white-space: nowrap;
   &::after {
     content: '';
     height: 15px;
     width: 2px;
-    background-color: #999696;
+     background-color: $border;
     display: inline-block;
     border-radius: 3px;
     margin-top: 15px;
@@ -38,6 +39,7 @@
     position: relative;
     padding-bottom: 32px;
     white-space: nowrap;
+    color: $sand;
     &:last-child {
       padding-bottom: 0;
     }
@@ -46,7 +48,7 @@
         content: '';
         height: 2px;
         width: 15px;
-        background-color: #999696;
+         background-color: $border;
         display: inline-block;
         position: absolute;
         bottom: 16px;
@@ -143,7 +145,7 @@
   height: 35px;
   width: 20px;
   border-radius: 10px;
-  border: 2px solid #fff;
+  border: 2px solid $white;
   bottom: 25%;
   left: 50%;
   margin-left: -10px;
@@ -222,7 +224,7 @@
 }
 
 .cs-hero.cs-style3 {
-  background-color: #000;
+  background-color: $sand;
   padding: 240px 0 150px;
   position: relative;
   overflow: hidden;
@@ -332,6 +334,7 @@
     margin: 0;
     font-weight: 700;
     font-size: 100px;
+    color: $sand;
     position: relative;
     text-decoration: underline;
     text-decoration-color: $accent;
@@ -404,7 +407,7 @@
       }
     }
     .cs-hero_btn {
-      color: #999696;
+      color: $ternary;
       transition: all 0.5s ease;
       display: inline-flex;
       &:hover {
@@ -435,7 +438,7 @@
   position: absolute;
   z-index: 11;
   font-weight: 600;
-  color: #fff;
+  color: $white;
   bottom: 48px;
   display: inline-flex;
   align-items: center;
@@ -839,7 +842,7 @@
     font-weight: 700;
     line-height: 1.33em;
     color: transparent;
-    -webkit-text-stroke: 2px #fff;
+    -webkit-text-stroke: 2px $white;
     margin-bottom: 36px;
     @media (max-width: 1400px) {
       font-size: 80px;
@@ -892,8 +895,8 @@
       border-radius: 50%;
       background: linear-gradient(
         180deg,
-        #ff4a17 0%,
-        rgba(255, 74, 23, 0.5) 100%
+        $accent 0%,
+        rgba(217, 107, 59, 0.5) 100%
       );
       backdrop-filter: blur(5px);
       top: 35px;
@@ -936,7 +939,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(267deg, #161616 0%, #080808 100%);
+  background: linear-gradient(267deg, $sand 0%, $gray 100%);
   gap: 60px;
   position: relative;
   overflow: hidden;
@@ -1061,7 +1064,7 @@
   }
 }
 .cs-hero.cs-style8 {
-  background: linear-gradient(267deg, #161616 0%, #080808 100%);
+  background: linear-gradient(267deg, $sand 0%, $gray 100%);
   max-height: 1000px;
   display: flex;
   align-items: center;
@@ -1118,7 +1121,7 @@
       position: absolute;
       width: 207.256px;
       height: 207.256px;
-      background-color: #8cacff;
+       background-color: $primary;
       filter: blur(175px);
       left: 25%;
       top: 25%;
@@ -1152,7 +1155,7 @@
     max-width: 265px;
     gap: 13px;
     position: absolute;
-    box-shadow: -1px 0px 1px 0px #fff;
+     box-shadow: -1px 0px 1px 0px $white;
     &.cs-position_1 {
       top: 70%;
       left: -10%;
@@ -1178,7 +1181,7 @@
       font-weight: 600;
     }
     p {
-      color: #e4e4e4;
+      color: $border;
       font-weight: 600;
     }
   }

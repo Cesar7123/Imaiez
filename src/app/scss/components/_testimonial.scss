@@ -29,7 +29,7 @@
       content: '';
       height: 2px;
       width: 20px;
-      background-color: #d9d9d9;
+      background-color: $sand;
       display: inline-block;
       position: relative;
       top: -4px;
@@ -71,7 +71,7 @@
   .cs-testimonial.cs-style3 {
     padding: 50px;
     border-radius: 5px;
-    background: linear-gradient(267deg, #161616 0%, #080808 100%);
+    background: linear-gradient(267deg, $sand 0%, $gray 100%);
     @media (max-width: 991px) {
       padding: 30px;
     }
@@ -139,7 +139,7 @@
 .cs-testimonial.cs-style3 {
   padding: 50px;
   border-radius: 5px;
-  background: linear-gradient(267deg, #161616 0%, #080808 100%);
+  background: linear-gradient(267deg, $sand 0%, $gray 100%);
   @media (max-width: 991px) {
     padding: 30px;
   }

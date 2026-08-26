@@ -52,7 +52,7 @@ export default function AboutPage() {
         scrollDownId="#service"
         socialLinksHeading="Síguenos"
         heroSocialLinks={heroSocialLinks}
-        bgImageUrl="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        bgImageUrl="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />
       {/* End Page Heading Section */}
 
@@ -171,7 +171,6 @@ export default function AboutPage() {
           title="Hablemos de crear <br />algo <i>increíble</i> juntos"
           btnText="Agendar una reunión"
           btnLink="/contact"
-          bgSrc="/images/cta_bg.jpeg"
         />
       </Div>
       {/* End CTA Section */}

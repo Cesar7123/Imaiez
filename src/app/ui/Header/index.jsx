@@ -8,13 +8,17 @@ export default function Header({ variant }) {
   const [sideHeaderToggle, setSideHeaderToggle] = useState(false);
   const [mobileToggle, setMobileToggle] = useState(false);
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
       }
-    });
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (

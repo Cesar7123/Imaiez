@@ -1,16 +1,32 @@
-/*--------------------------------------------------------------
-## Basic Color
-----------------------------------------------------------------*/
 :root {
-  --accent: #ff4a17;
+  --accent: #b84432;           // Accessible sunset coral
+  --accent-secondary: #176b6b; // Deep cenote teal
   --primary-font: 'Poppins';
   --secondary-font: 'Open Sans';
 }
-$white: #fff;
-$black: #2a2a35;
-$primary: #f8f8fa;
-$secondary: rgba($primary, 0.75);
-$ternary: #a5a5b0;
-$border: #5a5a65;
-$gray: #22222c;
-$accent: var(--accent);
+
+// Bright neutrals for photography - these are KEY for contrast
+$white: #faf7f3;              // Cloud white - brighter base, warmer than pure white
+$cream-card: #f5f0eb;         // Card surfaces - subtle separation without harshness
+$black: #2d3d38;              // Charcoal - softer than the original, maintains depth
+
+// Accent palette - tropical & bright
+$primary: #2d3d38;            // Charcoal text - high contrast on light surfaces
+$secondary: #2d5a52;          // Jungle deep - readable body text
+$ternary: #765522;            // Dark gold - accessible warm accent
+$accent: var(--accent);       // Sunset coral for CTAs
+$accent-light: #e8f5f5;       // Light teal - soft backgrounds
+
+// Neutrals & text
+$text-primary: #2d3d38;       // Charcoal - readable & coastal
+$text-secondary: #65736d;     // Muted sage - readable secondary text
+$text-muted: #68756e;         // Muted sage - readable hints
+
+// Backgrounds & surfaces
+$sand: #ede5d9;               // Soft sand - hover states, warm accents
+$border: #d5ccc0;             // Soft border - subtle, warm dividers
+$border-light: #e8e3db;       // Lighter borders for minimal contrast areas
+$gray: #f0ebe5;               // Light gray - subtle backgrounds
+$bone: #faf7f3;               // Alias to white for backwards compatibility
+
+// Sea

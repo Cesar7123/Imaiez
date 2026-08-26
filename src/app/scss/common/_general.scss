@@ -131,7 +131,7 @@ hr {
   margin: 0;
   padding: 0;
   border: none;
-  border-top: 1px solid #f2f1ff;
+  border-top: 1px solid $border;
 }
 
 .cs-bg {
@@ -176,7 +176,7 @@ hr {
 }
 
 .cs-white_bg {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .cs-gray_bg {
@@ -194,14 +194,14 @@ hr {
 }
 
 .cs-gradient_bg_1 {
-  background: linear-gradient(267.18deg, #161616 0%, #080808 100%);
+  background: linear-gradient(267.18deg, $sand 0%, $gray 100%);
 }
 
 .cs-text_btn {
   display: inline-flex;
   align-items: center;
   font-weight: 600;
-  color: $white;
+  color: $primary;
   cursor: pointer;
   svg {
     margin-left: 15px;
@@ -279,7 +279,7 @@ hr {
   font-weight: 600;
   border-radius: 15px;
   background-color: $accent;
-  color: #fff;
+  color: $white;
   cursor: pointer;
   &:before {
     content: '';
@@ -310,16 +310,16 @@ hr {
     }
   }
   &.cs-type1 {
-    border: 2px solid #fff;
+    border: 2px solid $white;
     background-color: transparent;
     border-radius: 5px;
     transition: all 0.6s ease-out;
     &::before {
-      background-color: #fff;
+      background-color: $white;
       border-radius: 0px;
     }
     &:hover {
-      color: #000;
+      color: $primary;
     }
   }
 }
@@ -334,7 +334,7 @@ hr {
         content: '';
         height: 22px;
         width: 2px;
-        background-color: #fff;
+        background-color: $white;
         display: inline-block;
         position: absolute;
         right: -1px;
@@ -354,10 +354,10 @@ hr {
   height: 40px;
   width: 40px;
   border-radius: 5px;
-  background-color: #000;
+  background-color: $primary;
   &.active {
     background-color: $accent;
-    color: #fff;
+    color: $white;
     pointer-events: none;
   }
 }
@@ -369,9 +369,9 @@ hr {
   border-radius: 15px;
   outline: none;
   transition: all 0.3s ease;
-  border: 2px solid #999696;
+  border: 2px solid $border;
   background-color: transparent;
-  color: #fff;
+  color: $primary;
   &:focus {
     border-color: $accent;
   }
@@ -415,7 +415,7 @@ label {
         height: 20px;
         width: 2px;
         border-radius: 2px;
-        background-color: #fff;
+        background-color: $black;
         position: absolute;
         right: 0;
         top: 50%;
@@ -592,7 +592,7 @@ label {
     width: 100%;
     left: 0%;
     top: 0%;
-    background-color: #000;
+    background-color: $primary;
   }
 }
 
@@ -650,7 +650,7 @@ label {
   display: block;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: $white;
   border-radius: 50%;
 }
 
@@ -847,7 +847,7 @@ label {
   height: 320px;
   width: 320px;
   div {
-    background-color: #000;
+    background-color: $primary;
     transform: rotate(45deg);
     height: 100%;
     width: 100%;
@@ -875,7 +875,7 @@ label {
   position: relative;
   .cs-shape_4 {
     position: absolute;
-    background-color: #000;
+    background-color: $primary;
     border-radius: 50%;
     &:nth-child(1) {
       left: 5%;
@@ -928,7 +928,7 @@ label {
   }
   .cs-shape_2 {
     > div {
-      background-color: #181818;
+      background-color: $sand;
     }
     &:nth-child(1) {
       left: -240px;
@@ -1058,7 +1058,7 @@ label {
 .cs-tab_links.cs-style1 {
   display: inline-flex;
   padding: 5px;
-  background-color: #000;
+  background-color: $primary;
   border-radius: 10px;
   position: absolute;
   top: -195px;
@@ -1067,7 +1067,7 @@ label {
   li {
     padding: 7px 20px;
     font-weight: 500;
-    color: #fff;
+    color: $primary;
     display: inline-flex;
     transition: all 0.3s ease;
     cursor: pointer;
@@ -1159,13 +1159,13 @@ label {
 }
 
 .lg-backdrop {
-  background-color: #181818;
+  background-color: $black;
 }
 .lg-toolbar .lg-icon,
 #lg-counter,
 .lg-actions .lg-next,
 .lg-actions .lg-prev {
-  color: #fff;
+  color: $white;
 }
 .lg-toolbar .lg-icon:hover,
 .lg-actions .lg-next:hover,
@@ -1177,7 +1177,7 @@ label {
   position: fixed;
   bottom: -60px;
   right: 40px;
-  color: #fff;
+  color: $white;
   padding: 5px;
   height: 50px;
   width: 50px;
@@ -1187,7 +1187,7 @@ label {
   cursor: pointer;
   transition: all 0.4s ease;
   z-index: 10;
-  background-color: #000000;
+  background-color: $primary;
   color: $accent;
   box-shadow: 0px 1px 5px 1px rgba($black, 0.2);
   border-radius: 50%;
@@ -1227,7 +1227,7 @@ label {
     font-weight: 700;
     font-size: 120px;
     line-height: 1.25em;
-    color: #fefefe;
+    color: $white;
     display: inline-flex;
     padding: 40px 150px;
     a {
@@ -1253,7 +1253,7 @@ label {
 
 .cs-faq_nav {
   height: 100%;
-  background-color: #000;
+  background-color: $sand;
   padding: 45px 35px;
   .cs-faq_nav_title {
     font-size: 30px;
@@ -1585,7 +1585,7 @@ label {
   }
 }
 .cs-gradient_1 {
-  background: linear-gradient(267deg, #161616 0%, #080808 100%);
+  background: linear-gradient(267deg, $sand 0%, $gray 100%);
 }
 .cs-list.cs-style_2 {
   li {
@@ -1646,7 +1646,7 @@ label {
     }
     &:last-child {
       padding-left: 150px;
-      border-left: 1px solid #4d4d4d;
+      border-left: 1px solid $border;
       @media (max-width: 1400px) {
         padding-left: 70px;
       }
@@ -1655,7 +1655,7 @@ label {
       }
       @media (max-width: 991px) {
         padding-left: 0px;
-        border-top: 1px solid #4d4d4d;
+        border-top: 1px solid $border;
         border-left: 0;
         padding-top: 30px;
       }

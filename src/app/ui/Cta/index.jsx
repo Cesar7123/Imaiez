@@ -4,13 +4,12 @@ import Button from '../Button';
 import Div from '../Div';
 import Spacing from '../Spacing';
 
-export default function Cta({ title, btnText, btnLink, bgSrc, variant }) {
+export default function Cta({ title, btnText, btnLink, variant }) {
   return (
     <Div
       className={`cs-cta cs-style1 cs-bg text-center cs-shape_wrap_1 cs-position_1 ${
         variant ? variant : ''
       }`}
-      style={{ backgroundImage: `url(${bgSrc})` }}
     >
       <Div className="cs-shape_1" />
       <Div className="cs-shape_1" />

@@ -75,7 +75,6 @@ export default function PortfolioDetailsPage() {
         title="Hablemos de crear <br />algo <i>increíble</i> juntos"
         btnText="Agendar una reunión"
         btnLink="/contact"
-        bgSrc="/images/cta_bg.jpeg"
       />
     </>
   )
