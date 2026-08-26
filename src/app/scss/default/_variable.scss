@@ -1,0 +1,16 @@
+/*--------------------------------------------------------------
+## Basic Color
+----------------------------------------------------------------*/
+:root {
+  --accent: #ff4a17;
+  --primary-font: 'Poppins';
+  --secondary-font: 'Open Sans';
+}
+$white: #fff;
+$black: #2a2a35;
+$primary: #f8f8fa;
+$secondary: rgba($primary, 0.75);
+$ternary: #a5a5b0;
+$border: #5a5a65;
+$gray: #22222c;
+$accent: var(--accent);
