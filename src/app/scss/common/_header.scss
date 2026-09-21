@@ -304,6 +304,19 @@
   }
 }
 
+.cs-home_header:not(.cs-sticky_header_active) {
+  background: rgba($black, 0.28);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba($white, 0.2);
+  color: $white;
+
+  .cs-nav,
+  .cs-icon_btn {
+    color: $white;
+  }
+}
+
 // .cs-gescout_show {
 //   top: 0;
 //   opacity: 1;

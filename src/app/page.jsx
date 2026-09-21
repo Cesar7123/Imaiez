@@ -1,4 +1,3 @@
-'use client';
 import Div from '@/app/ui/Div';
 import FunFact2 from '@/app/ui/FunFact/FunFact2';
 import MasonryGallery from '@/app/ui/Gallery/MasonryGallery';
@@ -14,6 +13,15 @@ import Image from 'next/image';
 
 import aboutImg from '../../public/images/about_img_5.jpeg';
 import Card from './ui/Card';
+import { getAllPosts } from '@/app/lib/blog';
+import { getPortfolioImages } from '@/app/lib/portfolio';
+import { getOptimizedUrl } from '@/app/lib/cloudinary';
+
+export const metadata = {
+  title: 'Fotografía y cine con intención',
+  description: 'Imai Photo crea imágenes y películas para marcas, hoteles, restaurantes y personas.',
+  alternates: { canonical: '/' },
+};
 const heroSocialLinks = [
   {
     name: 'Instagram',
@@ -61,30 +69,39 @@ const funfaceData = [
   },
 ];
 
-const showcaseData = [
-  {
-    title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    href: '/portfolio/portfolio-details',
-  },
-  {
-    title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    href: '/portfolio/portfolio-details',
-  },
-  {
-    title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    href: '/portfolio/portfolio-details',
-  },
-  {
-    title: 'Piensa en realidad <br/>sé positivo',
-    imgUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    href: '/portfolio/portfolio-details',
-  },
-];
+const fallbackShowcaseData = [
+  '/images/landscape.jpeg',
+  '/images/wedding.jpeg',
+  '/images/fashion.jpeg',
+].map((imgUrl) => ({
+  title: 'Imai Photo',
+  imgUrl,
+  href: '/portfolio',
+}));
 
-export default function PhotographyAgencyHome() {
+function getRandomLandscapeImages(images) {
+  const landscapes = images.filter((image) => image.width > image.height);
+
+  for (let index = landscapes.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [landscapes[index], landscapes[randomIndex]] = [landscapes[randomIndex], landscapes[index]];
+  }
+
+  return landscapes.slice(0, 3);
+}
+
+export default async function PhotographyAgencyHome() {
+  const portfolio = await getPortfolioImages({ limit: 100 });
+  const posts = getAllPosts();
+  const heroImages = getRandomLandscapeImages(portfolio);
+  const showcaseData = heroImages.length === 3
+    ? heroImages.map((image) => ({
+      title: image.title || 'Imai Photo',
+      imgUrl: getOptimizedUrl(image.url),
+      href: '/portfolio',
+    }))
+    : fallbackShowcaseData;
+
   return (
     <>
       {/* Start Hero Section */}
@@ -98,7 +115,7 @@ export default function PhotographyAgencyHome() {
 
       {/* Start Gallery Section */}
       <Spacing lg="145" md="80" />
-      <MasonryGallery />
+      <MasonryGallery portfolioData={portfolio} />
       {/* End Gallery Section */}
 
       {/* Start Testimonial Section */}
@@ -124,7 +141,7 @@ export default function PhotographyAgencyHome() {
             </Div>
             <Div className="col-xl-7 offset-xl-1">
               <Div className="cs-half_of_full_width">
-                <PostSlider />
+                <PostSlider posts={posts} />
               </Div>
             </Div>
           </Div>

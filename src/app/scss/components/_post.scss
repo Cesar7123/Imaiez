@@ -19,17 +19,26 @@
     width: 100%;
     top: 0;
     left: 0;
-    background: linear-gradient(360deg, rgba($black, 0.75) 0%, rgba($black, 0) 100%);
+    background: linear-gradient(
+      360deg,
+      rgba($black, 0.75) 0%,
+      rgba($black, 0) 100%
+    );
   }
   .cs-posted_by {
+    color: $cream-card;
     font-size: 14px;
     line-height: 1.6em;
     margin-bottom: 10px;
   }
   .cs-post_title {
+    color: $cream-card;
     font-size: 22px;
     margin-bottom: 0;
     line-height: 1.45em;
+    a {
+      color: $cream-card;
+    }
   }
   .cs-post_info {
     position: absolute;
@@ -50,7 +59,7 @@
     position: relative;
     margin-bottom: 45px;
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       height: 100%;
       width: 100%;
@@ -102,7 +111,7 @@
     background-color: $primary;
     padding: 40px 35px;
     font-weight: 600;
-    color: $primary;
+    color: $cream-card;
     margin-bottom: 45px;
     small {
       display: block;
@@ -115,7 +124,7 @@
       margin-top: 15px;
       padding-left: 35px;
       &::before {
-        content: '';
+        content: "";
         height: 2px;
         width: 20px;
         border-radius: 2px;

@@ -15,7 +15,7 @@ export default function PostStyle2({
   return (
     <Div className="cs-post cs-style2">
       <Link href={href} className="cs-post_thumb cs-radius_15">
-        <img src={thumb} alt="Post" className="w-100 cs-radius_15" />
+          <img src={thumb} alt="" className="w-100 cs-radius_15" />
       </Link>
       <Div className="cs-post_info">
         <Div className="cs-post_meta cs-style1 cs-ternary_color cs-semi_bold cs-primary_font">
@@ -27,7 +27,8 @@ export default function PostStyle2({
         <h2 className="cs-post_title">
           <Link href={href}>{title}</Link>
         </h2>
-        <Button btnLink={href} btnText="See More" />
+        <p className="cs-post_sub_title">{subtitle}</p>
+        <Button btnLink={href} btnText="Leer historia" />
       </Div>
     </Div>
   );

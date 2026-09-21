@@ -333,7 +333,7 @@
   .cs-hero_title {
     margin: 0;
     font-weight: 700;
-    font-size: 100px;
+    font-size: clamp(48px, 6vw, 78px);
     color: $sand;
     position: relative;
     text-decoration: underline;
@@ -641,7 +641,7 @@
   .cs-hero.cs-style4 {
     padding: 80px 15px;
     .cs-hero_title {
-      font-size: 60px;
+      font-size: clamp(42px, 7vw, 60px);
       span::before {
         height: 5px;
         bottom: 5px;

@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.5",
+    "cloudinary": "^2.11.0",
     "html-react-parser": "^5.2.3",
     "lightgallery": "^2.8.3",
     "next": "16.3.3",
+    "next-cloudinary": "^6.19.3",
     "react": "^19",
     "react-dom": "^19",
     "react-slick": "^0.30.3",
@@ -22,6 +24,8 @@
   },
   "devDependencies": {
     "@iconify/react": "^5.2.1",
+    "@types/node": "26.6.1",
+    "@types/react": "19.3.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.3"
   }

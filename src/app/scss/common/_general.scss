@@ -1295,7 +1295,8 @@ label {
       margin-right: 28px;
     }
   }
-  span {
+  span,
+  button {
     display: inline-block;
     position: relative;
     padding-bottom: 10px;
@@ -1324,7 +1325,8 @@ label {
   }
 
   .active {
-    span {
+    span,
+    button {
       color: $accent;
       &::before {
         transform: scale(1);

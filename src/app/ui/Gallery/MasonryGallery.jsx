@@ -1,185 +1,74 @@
+'use client';
+
 import { Icon } from '@iconify/react';
-import React, { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Div from '../Div';
 import SectionHeading from '../SectionHeading';
 import Spacing from '../Spacing';
 import LightGallery from 'lightgallery/react';
-const portfolioData = [
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_21.jpeg',
-    srcLg: '/images/portfolio_21_lg.jpeg',
-    category: 'wedding',
-    height: 299,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_25.jpeg',
-    srcLg: '/images/portfolio_25_lg.jpeg',
-    category: 'portrait',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_29.jpeg',
-    srcLg: '/images/portfolio_29_lg.jpeg',
-    category: 'fashion',
-    height: 299,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_22.jpeg',
-    srcLg: '/images/portfolio_22_lg.jpeg',
-    category: 'commercial',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_27.jpeg',
-    srcLg: '/images/portfolio_27_lg.jpeg',
-    category: 'wedding',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_23.jpeg',
-    srcLg: '/images/portfolio_23_lg.jpeg',
-    category: 'fashion',
-    height: 299,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_26.jpeg',
-    srcLg: '/images/portfolio_26_lg.jpeg',
-    category: 'landscape',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_30.jpeg',
-    srcLg: '/images/portfolio_30_lg.jpeg',
-    category: 'portrait',
-    height: 299,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_24.jpeg',
-    srcLg: '/images/portfolio_24_lg.jpeg',
-    category: 'shortfilm',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_28.jpeg',
-    srcLg: '/images/portfolio_28_lg.jpeg',
-    category: 'fashion',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_21.jpeg',
-    srcLg: '/images/portfolio_21_lg.jpeg',
-    category: 'wedding',
-    height: 299,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_25.jpeg',
-    srcLg: '/images/portfolio_25_lg.jpeg',
-    category: 'portrait',
-    height: 622,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_29.jpeg',
-    srcLg: '/images/portfolio_29_lg.jpeg',
-    category: 'fashion',
-    height: 299,
-  },
-  {
-    title: 'Titulo',
-    subtitle: 'subtitulo',
-    href: '/portfolio/portfolio-details',
-    src: '/images/portfolio_22.jpeg',
-    srcLg: '/images/portfolio_22_lg.jpeg',
-    category: 'commercial',
-    height: 622,
-  },
-];
-const categoryMenu = [
-  {
-    title: 'Bodas',
-    category: 'wedding',
-  },
-  {
-    title: 'Retratos',
-    category: 'portrait',
-  },
-  {
-    title: 'Moda',
-    category: 'fashion',
-  },
-  {
-    title: 'Comercial',
-    category: 'commercial',
-  },
-  {
-    title: 'Paisajes',
-    category: 'landscape',
-  },
-  {
-    title: 'Short film',
-    category: 'shortfilm',
-  },
-];
-export default function MasonryGallery() {
+
+const categoryLabels = {
+  wedding: 'Bodas',
+  portrait: 'Retratos',
+  fashion: 'Moda',
+  commercial: 'Comercial',
+  landscape: 'Paisajes',
+  shortfilm: 'Short film',
+};
+const categoryOrder = ['wedding', 'portrait', 'fashion', 'commercial', 'landscape', 'shortfilm'];
+
+function ProgressiveImage({ item, height }) {
+  const fullUrl = item.url;
+  const previewUrl = item.previewUrl || fullUrl;
+  const [src, setSrc] = useState(previewUrl);
+
+  return (
+    <img
+      src={src}
+      alt={item.description || item.title}
+      loading="lazy"
+      width={item.width}
+      height={item.height}
+      onLoad={() => {
+        if (src !== fullUrl) setSrc(fullUrl);
+      }}
+      style={{ objectFit: 'cover', width: '100%', height: `${height}px` }}
+    />
+  );
+}
+
+export default function MasonryGallery({ portfolioData = [] }) {
   const [active, setActive] = useState('all');
   const [itemShow, setItemShow] = useState(10);
+  const categories = useMemo(
+    () => {
+      const available = new Set(portfolioData.flatMap((item) => item.categories || []));
+      return [
+        ...categoryOrder.filter((category) => available.has(category)),
+        ...[...available].filter((category) => !categoryOrder.includes(category)),
+      ];
+    },
+    [portfolioData],
+  );
+  const visibleItems = portfolioData.filter(
+    (item) => active === 'all' || item.categories?.includes(active),
+  );
 
   return (
     <>
       <Div className="container">
         <Div className="cs-portfolio_1_heading">
-          <SectionHeading title="Fotografías reciente" subtitle="Nuestro Portafolio" />
+          <SectionHeading title="Fotografías recientes" subtitle="Nuestro Portafolio" />
           <Div className="cs-filter_menu cs-style1">
             <ul className="cs-mp0 cs-center">
               <li className={active === 'all' ? 'active' : ''}>
-                <span onClick={() => setActive('all')}>Todo</span>
+                <button type="button" aria-pressed={active === 'all'} onClick={() => setActive('all')}>Todo</button>
               </li>
-              {categoryMenu.map((item, index) => (
-                <li
-                  className={active === item.category ? 'active' : ''}
-                  key={index}
-                >
-                  <span onClick={() => setActive(item.category)}>
-                    {item.title}
-                  </span>
+              {categories.map((category) => (
+                <li className={active === category ? 'active' : ''} key={category}>
+                  <button type="button" aria-pressed={active === category} onClick={() => setActive(category)}>
+                    {categoryLabels[category] || category.replace(/_/g, ' ')}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -187,62 +76,40 @@ export default function MasonryGallery() {
         </Div>
       </Div>
       <Spacing lg="90" md="45" />
-      <LightGallery
-        speed={500}
-        download={false}
-        elementClassNames="cs-masonry_4_col"
-      >
-        {portfolioData.slice(0, itemShow).map((item, index) => (
-          <Div
-            href={item.src}
-            className={`${active === 'all'
-                ? ''
-                : !(active === item.category)
-                  ? 'd-none'
-                  : ''
-              }`}
-            key={index}
-          >
-            <Div
-              className="cs-portfolio cs-style1 cs-type2"
-              style={{ height: `${item.height}px` }}
-            >
-              <Div className="cs-lightbox_item">
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  style={{ objectFit: 'cover', width: '100%', height: `${item.height}px` }}
+      <LightGallery speed={500} download={false} elementClassNames="cs-masonry_4_col">
+        {visibleItems.slice(0, itemShow).map((item) => {
+          const height = Math.max(299, Math.round(480 * (item.height / item.width)));
+          return (
+            <Div href={item.url} className="" key={item.publicId}>
+              <Div className="cs-portfolio cs-style1 cs-type2" style={{ height: `${height}px` }}>
+                <Div className="cs-lightbox_item">
+                  <ProgressiveImage item={item} height={height} />
+                </Div>
+                <Div className="cs-portfolio_hover" />
+                <span className="cs-plus" aria-hidden="true" />
+                <Div
+                  className="cs-portfolio_bg cs-bg"
+                  style={{ backgroundImage: `url("${item.previewUrl || item.url}")` }}
                 />
-              </Div>
-              <Div className="cs-portfolio_hover" />
-              <span className="cs-plus" />
-              <Div
-                className="cs-portfolio_bg cs-bg"
-                style={{ backgroundImage: `url("${item.src}")` }}
-              />
-              <Div className="cs-portfolio_info">
-                <Div className="cs-portfolio_info_bg cs-accent_bg" />
-                <h2 className="cs-portfolio_title">{item.title}</h2>
-                <Div className="cs-portfolio_subtitle">{item.subtitle}</Div>
+                <Div className="cs-portfolio_info">
+                  <Div className="cs-portfolio_info_bg cs-accent_bg" />
+                  <h2 className="cs-portfolio_title">{item.title}</h2>
+                  <Div className="cs-portfolio_subtitle">{item.description}</Div>
+                </Div>
               </Div>
             </Div>
-          </Div>
-        ))}
+          );
+        })}
       </LightGallery>
       <Div className="container">
         <Div className="text-center">
-          {portfolioData.length <= itemShow ? (
-            ''
-          ) : (
+          {visibleItems.length > itemShow && (
             <>
               <Spacing lg="65" md="40" />
-              <span
-                className="cs-text_btn"
-                onClick={() => setItemShow(itemShow + 4)}
-              >
+              <button type="button" className="cs-text_btn" onClick={() => setItemShow(itemShow + 4)}>
                 <span>Cargar más</span>
-                <Icon icon="bi:arrow-right" />
-              </span>
+                <Icon icon="bi:arrow-right" aria-hidden="true" />
+              </button>
             </>
           )}
         </Div>

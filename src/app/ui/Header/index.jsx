@@ -1,9 +1,11 @@
-'use client';
-import { useEffect, useState } from 'react';
-import Div from '../Div';
-import Link from 'next/link';
+"use client";
+import { useEffect, useState } from "react";
+import Div from "../Div";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header({ variant }) {
+  const pathname = usePathname();
   const [isSticky, setIsSticky] = useState(false);
   const [sideHeaderToggle, setSideHeaderToggle] = useState(false);
   const [mobileToggle, setMobileToggle] = useState(false);
@@ -17,15 +19,18 @@ export default function Header({ variant }) {
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <header
-        className={`cs-site_header cs-style1 text-uppercase ${variant ? variant : ''
-          } cs-sticky_header ${isSticky ? 'cs-sticky_header_active' : ''}`}
+        className={`cs-site_header cs-style1 text-uppercase ${
+          variant ? variant : ""
+        } cs-sticky_header ${pathname === "/" ? "cs-home_header" : ""} ${
+          isSticky ? "cs-sticky_header_active" : ""
+        }`}
       >
         <Div className="cs-main_header">
           <Div className="container">
@@ -39,7 +44,7 @@ export default function Header({ variant }) {
                 <Div className="cs-nav cs-primary_font cs-medium">
                   <ul
                     className="cs-nav_list"
-                    style={{ display: `${mobileToggle ? 'block' : 'none'}` }}
+                    style={{ display: `${mobileToggle ? "block" : "none"}` }}
                   >
                     {/* Home nav section hidden for later activation
                     <li className="menu-item-has-children">
@@ -149,10 +154,7 @@ export default function Header({ variant }) {
                     </li>
                     */}
                     <li>
-                      <Link
-                        href="/"
-                        onClick={() => setMobileToggle(false)}
-                      >
+                      <Link href="/" onClick={() => setMobileToggle(false)}>
                         Inicio
                       </Link>
                     </li>
@@ -165,7 +167,10 @@ export default function Header({ variant }) {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/portfolio" onClick={() => setMobileToggle(false)}>
+                      <Link
+                        href="/portfolio"
+                        onClick={() => setMobileToggle(false)}
+                      >
                         Portafolio
                       </Link>
                     </li>
@@ -175,7 +180,10 @@ export default function Header({ variant }) {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact" onClick={() => setMobileToggle(false)}>
+                      <Link
+                        href="/contact"
+                        onClick={() => setMobileToggle(false)}
+                      >
                         Contacto
                       </Link>
                     </li>
@@ -232,8 +240,8 @@ export default function Header({ variant }) {
                   <span
                     className={
                       mobileToggle
-                        ? 'cs-munu_toggle cs-toggle_active'
-                        : 'cs-munu_toggle'
+                        ? "cs-munu_toggle cs-toggle_active"
+                        : "cs-munu_toggle"
                     }
                     onClick={() => setMobileToggle(!mobileToggle)}
                   >
@@ -245,7 +253,6 @@ export default function Header({ variant }) {
           </Div>
         </Div>
       </header>
-
     </>
   );
 }
