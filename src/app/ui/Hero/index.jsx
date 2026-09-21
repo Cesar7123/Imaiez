@@ -13,10 +13,11 @@ export default function Hero({
   socialLinksHeading,
   heroSocialLinks,
   bgImageUrl,
+  variant,
 }) {
   return (
     <Div
-      className="cs-hero cs-style1 cs-bg cs-fixed_bg cs-shape_wrap_1"
+      className={`cs-hero cs-style1 cs-bg cs-fixed_bg cs-shape_wrap_1 ${variant || ''}`}
       style={{ backgroundImage: `url(${bgImageUrl})` }}
     >
       <Div className="cs-shape_1" />
@@ -32,7 +33,11 @@ export default function Hero({
           </Div>
         </Div>
       </Div>
-      <VerticalLinks data={heroSocialLinks} title={socialLinksHeading} />
+      <VerticalLinks
+        data={heroSocialLinks}
+        title={socialLinksHeading}
+        variant="cs-hero_social_glass"
+      />
       <a href={scrollDownId} className="cs-down_btn">
         .
       </a>

@@ -1096,10 +1096,10 @@ label {
     display: block;
     border: none;
     width: 100%;
-    filter: grayscale(100%) invert(90%) contrast(120%);
+    filter: none;
   }
   &.cs-type1 {
-    height: 100%;
+    height: 450px;
     min-height: 300px;
     width: 50vw;
   }

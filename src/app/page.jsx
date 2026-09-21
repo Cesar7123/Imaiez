@@ -216,9 +216,9 @@ export default async function PhotographyAgencyHome() {
                 data-src="assets/img/map_img_1.jpeg"
               >
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96652.27317354927!2d-74.33557928194516!3d40.79756494697628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3a82f1352d0dd%3A0x81d4f72c4435aab5!2sTroy+Meadows+Wetlands!5e0!3m2!1sen!2sbd!4v1563075599994!5m2!1sen!2sbd"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1855337.5332464234!2d-110.83778634999999!3d24.7369676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x636080464b6765dd%3A0xd9dc2fb886bcffeb!2sChurea%20Producciones%20-%20Fotograf%C3%ADa%20de%20retrato%2C%20paisaje%20y%20comercial!5e0!3m2!1ses!2smx!4v1790009802238!5m2!1ses!2smx"
                   allowFullScreen
-                  title="Mapa de Google"
+                  title="Churea Producciones en La Paz"
                 />
               </Div>
               <Spacing lg="0" md="80" />

@@ -12,7 +12,11 @@ export default function Hero6({
 }) {
   return (
     <Div className="cs-hero_6_wrap">
-      <VerticalLinks data={heroSocialLinks} title={socialLinksHeading} />
+      <VerticalLinks
+        data={heroSocialLinks}
+        title={socialLinksHeading}
+        variant="cs-hero_social_glass"
+      />
       <FullScreenHorizontalSlider data={showcaseData} />
     </Div>
   );

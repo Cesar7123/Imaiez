@@ -54,6 +54,7 @@ export default function AboutContent({ aboutImage, heroImage }) {
         socialLinksHeading="Síguenos"
         heroSocialLinks={heroSocialLinks}
         bgImageUrl={heroImage?.url || aboutImage?.url || aboutImg.src}
+        variant="cs-about_hero"
       />
       {/* End Page Heading Section */}
 
