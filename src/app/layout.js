@@ -5,7 +5,7 @@ import RouteEffects from "@/app/ui/RouteEffects";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./scss/index.scss";
-import { Poppins, Open_Sans } from "next/font/google";
+import { Poppins, Open_Sans, Playfair_Display } from "next/font/google";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
 const siteName = "IMAI - Churea Producciones";
@@ -21,6 +21,11 @@ const openSans = Open_Sans({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--secondary-font",
+});
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--serif-font",
 });
 
 export const metadata = {
@@ -111,7 +116,7 @@ export default function RootLayout({ children }) {
         <meta name="author" content={siteName} />
         <link rel="preconnect" href="https://res.cloudinary.com" />
       </head>
-      <body className={`${openSans.variable} ${poppins.variable}`}>
+      <body className={`${openSans.variable} ${poppins.variable} ${playfair.variable}`}>
         <a className="skip-link" href="#main-content">
           Saltar al contenido
         </a>

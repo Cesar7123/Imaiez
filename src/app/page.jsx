@@ -1,18 +1,12 @@
 import Div from "@/app/ui/Div";
-import FunFact2 from "@/app/ui/FunFact/FunFact2";
 import MasonryGallery from "@/app/ui/Gallery/MasonryGallery";
-import Hero2 from "@/app/ui/Hero/Hero2";
 import Hero6 from "@/app/ui/Hero/Hero6";
-import PricingTableList from "@/app/ui/PricingTable/PricingTableList";
 import SectionHeading from "@/app/ui/SectionHeading";
 import PostSlider from "@/app/ui/Slider/PostSlider";
 import TestimonialSlider from "@/app/ui/Slider/TestimonialSlider";
 import Spacing from "@/app/ui/Spacing";
-import { Icon } from "@iconify/react";
-import Image from "next/image";
+import { ClassicContactForm } from "@/app/ui/ContactForm";
 
-import aboutImg from "../../public/images/about_img_5.jpeg";
-import Card from "./ui/Card";
 import { getAllPosts } from "@/app/lib/blog";
 import { getPortfolioPage } from "@/app/lib/portfolio";
 import { getOptimizedUrl } from "@/app/lib/cloudinary";
@@ -23,50 +17,15 @@ export const metadata = {
     "Imai Photo crea imágenes y películas para marcas, hoteles, restaurantes y personas.",
   alternates: { canonical: "/" },
 };
+
+const MAPS_EMBED_URL =
+  process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL ||
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1855337.5332464234!2d-110.83778634999999!3d24.7369676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x636080464b6765dd%3A0xd9dc2fb886bcffeb!2sChurea%20Producciones%20-%20Fotograf%C3%ADa%20de%20retrato%2C%20paisaje%20y%20comercial!5e0!3m2!1ses!2smx!4v1790009802238!5m2!1ses!2smx";
+
 const heroSocialLinks = [
   {
     name: "Instagram",
     links: "https://www.instagram.com/imaiez",
-  },
-];
-const heroData = [
-  {
-    title: "Boda",
-    imageUrl: "/images/wedding.jpeg",
-    href: "/service/service-details",
-  },
-  {
-    title: "Moda",
-    imageUrl: "/images/fashion.jpeg",
-    href: "/service/service-details",
-  },
-  {
-    title: "Comercial",
-    imageUrl: "/images/commercial.jpeg",
-    href: "/service/service-details",
-  },
-  {
-    title: "Paisaje",
-    imageUrl: "/images/landscape.jpeg",
-    href: "/service/service-details",
-  },
-];
-const funfaceData = [
-  {
-    title: "Productos",
-    factNumber: "550",
-  },
-  {
-    title: "Clientes felices en todo el mundo",
-    factNumber: "40K",
-  },
-  {
-    title: "Proyectos completados",
-    factNumber: "50k",
-  },
-  {
-    title: "Miembros del equipo",
-    factNumber: "250",
   },
 ];
 
@@ -165,13 +124,6 @@ export default async function PhotographyAgencyHome() {
       </Div>
       {/* End Blog Section */}
 
-      <Spacing lg="140" md="80" />
-      {/* Start FunFact Section */}
-      {/* <Div className="container">
-        <FunFact2 data={funfaceData} variant="cs-type2" />
-      </Div>*/}
-      {/* End FunFact Section */}
-
       {/* Start Contact Section */}
       <Spacing lg="140" md="70" />
       <Div className="container">
@@ -187,45 +139,7 @@ export default async function PhotographyAgencyHome() {
           <Div className="row">
             <Div className="col-xl-5 col-lg-6">
               <Spacing lg="100" md="80" />
-              <form action="#" className="row">
-                <Div className="col-sm-6">
-                  <label className="cs-primary_color">Nombre Completo*</label>
-                  <input type="text" className="cs-form_field" />
-                  <Spacing lg="20" md="20" />
-                </Div>
-                <Div className="col-sm-6">
-                  <label className="cs-primary_color">
-                    Correo Electrónico*
-                  </label>
-                  <input type="text" className="cs-form_field" />
-                  <Spacing lg="20" md="20" />
-                </Div>
-                <Div className="col-sm-6">
-                  <label className="cs-primary_color">Tipo de Proyecto*</label>
-                  <input type="text" className="cs-form_field" />
-                  <Spacing lg="20" md="20" />
-                </Div>
-                <Div className="col-sm-6">
-                  <label className="cs-primary_color">Teléfono*</label>
-                  <input type="text" className="cs-form_field" />
-                  <Spacing lg="20" md="20" />
-                </Div>
-                <Div className="col-sm-12">
-                  <label className="cs-primary_color">Detalles*</label>
-                  <textarea
-                    cols="30"
-                    rows="7"
-                    className="cs-form_field"
-                  ></textarea>
-                  <Spacing lg="25" md="25" />
-                </Div>
-                <Div className="col-sm-12">
-                  <button className="cs-btn cs-style1">
-                    <span>Enviar Mensaje</span>
-                    <Icon icon="bi:arrow-right" />
-                  </button>
-                </Div>
-              </form>
+              <ClassicContactForm />
               <Spacing lg="100" md="60" />
             </Div>
             <Div className="col-lg-6 offset-xl-1">
@@ -234,9 +148,11 @@ export default async function PhotographyAgencyHome() {
                 data-src="assets/img/map_img_1.jpeg"
               >
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1855337.5332464234!2d-110.83778634999999!3d24.7369676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x636080464b6765dd%3A0xd9dc2fb886bcffeb!2sChurea%20Producciones%20-%20Fotograf%C3%ADa%20de%20retrato%2C%20paisaje%20y%20comercial!5e0!3m2!1ses!2smx!4v1790009802238!5m2!1ses!2smx"
+                  src={MAPS_EMBED_URL}
                   allowFullScreen
-                  title="Churea Producciones en La Paz"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Ubicación de IMAI - Churea Producciones en La Paz, Baja California Sur — mapa de Google Maps"
                 />
               </Div>
               <Spacing lg="0" md="80" />

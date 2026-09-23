@@ -1,0 +1,305 @@
+/* Wellness contact — Organic Modern / Wellness Minimalist */
+.cs-wellness_section {
+  position: relative;
+  isolation: isolate;
+}
+
+.cs-wellness_bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+}
+
+.cs-wellness_bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(mix($white, $primary, 86%), 0.92) 0%,
+    rgba(mix($white, $primary, 86%), 0.86) 60%,
+    rgba(mix($white, $primary, 86%), 0.94) 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+.cs-wellness_card {
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 16px;
+  box-shadow: 0 30px 80px rgba(26, 26, 26, 0.14);
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr 1.1fr;
+  overflow: hidden;
+}
+
+.cs-wellness_info {
+  padding: 48px;
+}
+
+.cs-wellness_info h2 {
+  color: #1a1a1a;
+  font-family: var(--serif-font), Georgia, serif;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.cs-wellness_info > p {
+  color: #666666;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  max-width: 42ch;
+}
+
+.cs-wellness_locate_btn {
+  align-items: center;
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  border-radius: 999px;
+  color: #1a1a1a;
+  display: inline-flex;
+  font-family: var(--secondary-font), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  gap: 10px;
+  letter-spacing: 0.12em;
+  min-height: 48px;
+  padding: 12px 28px;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.cs-wellness_locate_btn:hover {
+  background: #176b6b;
+  border-color: #176b6b;
+  color: #ffffff;
+}
+
+.cs-wellness_contact_block {
+  border-top: 1px solid #e0e0e0;
+  margin-top: 36px;
+  padding-top: 28px;
+}
+
+.cs-wellness_contact_block span {
+  color: #9e9e9e;
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.cs-wellness_contact_block a,
+.cs-wellness_contact_block p {
+  color: #176b6b;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+
+.cs-wellness_contact_block a:hover {
+  color: #1a1a1a;
+}
+
+.cs-wellness_form_panel {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(26, 26, 26, 0.08);
+  margin: 24px 24px 24px 0;
+  padding: 32px;
+}
+
+.cs-wellness_form_panel h3 {
+  color: #1a1a1a;
+  font-family: var(--serif-font), Georgia, serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.cs-wellness_field_group {
+  margin-bottom: 22px;
+}
+
+.cs-wellness_field_group label {
+  color: #9e9e9e;
+  display: block;
+  font-family: var(--secondary-font), sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+}
+
+.cs-wellness_field_group input,
+.cs-wellness_field_group textarea {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+  color: #1a1a1a;
+  display: block;
+  font-family: var(--secondary-font), sans-serif;
+  font-size: 16px;
+  outline: none;
+  padding: 8px 2px;
+  transition: border-color 0.25s ease;
+  width: 100%;
+}
+
+.cs-wellness_field_group input::placeholder,
+.cs-wellness_field_group textarea::placeholder {
+  color: #a0a0a0;
+  font-weight: 300;
+}
+
+.cs-wellness_field_group input:focus,
+.cs-wellness_field_group textarea:focus {
+  border-bottom-color: #176b6b;
+}
+
+.cs-wellness_field_group textarea {
+  resize: vertical;
+}
+
+.cs-wellness_field_row {
+  display: grid;
+  gap: 0 24px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cs-wellness_consent {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.cs-wellness_consent input[type="checkbox"] {
+  appearance: none;
+  border: 1px solid #9e9e9e;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 20px;
+  margin: 2px 0 0;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  width: 20px;
+}
+
+.cs-wellness_consent input[type="checkbox"]:checked {
+  background: #176b6b;
+  border-color: #176b6b;
+}
+
+.cs-wellness_consent input[type="checkbox"]:checked::after {
+  color: #ffffff;
+  content: "✓";
+  font-size: 13px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cs-wellness_consent label {
+  color: #9e9e9e;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cs-wellness_submit {
+  background: $white;
+  border: 1px solid rgba($primary, 0.35);
+  border-radius: 999px;
+  color: $primary;
+  font-family: var(--secondary-font), sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  min-height: 52px;
+  padding: 16px 40px;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+  width: 100%;
+}
+
+.cs-wellness_submit:hover:not(:disabled) {
+  background: mix($white, $primary, 88%);
+  border-color: $primary;
+  box-shadow: 0 10px 24px rgba($primary, 0.18);
+  transform: translateY(-2px);
+}
+
+.cs-wellness_submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cs-wellness_success {
+  color: #176b6b;
+  font-weight: 600;
+  margin: 16px 0 0;
+  text-align: center;
+}
+
+.cs-form_error {
+  color: #b3261e;
+  font-size: 14px;
+  margin: 16px 0 0;
+}
+
+.cs-wellness_map {
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(26, 26, 26, 0.12);
+  overflow: hidden;
+}
+
+.cs-wellness_map iframe {
+  border: 0;
+  display: block;
+  height: 420px;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .cs-wellness_card {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-wellness_info {
+    padding: 36px 28px 8px;
+  }
+
+  .cs-wellness_form_panel {
+    margin: 24px;
+  }
+}
+
+@media (max-width: 575px) {
+  .cs-wellness_field_row {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-wellness_info {
+    padding: 28px 20px 4px;
+  }
+
+  .cs-wellness_form_panel {
+    margin: 16px;
+    padding: 24px 20px;
+  }
+
+  .cs-wellness_map iframe {
+    height: 300px;
+  }
+}

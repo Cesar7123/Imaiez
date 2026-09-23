@@ -28,9 +28,9 @@ export default function Header({ variant }) {
       <header
         className={`cs-site_header cs-style1 text-uppercase ${
           variant ? variant : ""
-        } cs-sticky_header ${pathname === "/" ? "cs-home_header" : ""} ${
-          isSticky ? "cs-sticky_header_active" : ""
-        }`}
+        } cs-sticky_header ${
+          pathname === "/" || pathname === "/about" ? "cs-home_header" : ""
+        } ${isSticky ? "cs-sticky_header_active" : ""}`}
       >
         <Div className="cs-main_header">
           <Div className="container">
