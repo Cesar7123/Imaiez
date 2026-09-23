@@ -1,11 +1,12 @@
 'use client';
 
 import { Icon } from '@iconify/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Div from '../Div';
 import SectionHeading from '../SectionHeading';
 import Spacing from '../Spacing';
 import LightGallery from 'lightgallery/react';
+import { PortfolioProvider, usePortfolio } from './PortfolioContext';
 
 const categoryLabels = {
   wedding: 'Bodas',
@@ -17,7 +18,7 @@ const categoryLabels = {
 };
 const categoryOrder = ['wedding', 'portrait', 'fashion', 'commercial', 'landscape', 'shortfilm'];
 
-function ProgressiveImage({ item, height }) {
+function ProgressiveImage({ item }) {
   const fullUrl = item.url;
   const previewUrl = item.previewUrl || fullUrl;
   const [src, setSrc] = useState(previewUrl);
@@ -25,34 +26,71 @@ function ProgressiveImage({ item, height }) {
   return (
     <img
       src={src}
-      alt={item.description || item.title}
+      alt={item.alt || item.description || item.caption || item.title}
       loading="lazy"
       width={item.width}
       height={item.height}
       onLoad={() => {
         if (src !== fullUrl) setSrc(fullUrl);
       }}
-      style={{ objectFit: 'cover', width: '100%', height: `${height}px` }}
+      style={{ objectFit: 'cover', width: '100%', height: 'auto', display: 'block' }}
     />
   );
 }
 
-export default function MasonryGallery({ portfolioData = [] }) {
+function GalleryContent() {
   const [active, setActive] = useState('all');
-  const [itemShow, setItemShow] = useState(10);
+  const [columnCount, setColumnCount] = useState(4);
+  const lightGalleryRef = useRef(null);
+  const { images, nextCursor, loading, loadMore } = usePortfolio();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const update = () => setColumnCount(mediaQuery.matches ? 4 : 2);
+    update();
+    mediaQuery.addEventListener('change', update);
+    return () => mediaQuery.removeEventListener('change', update);
+  }, []);
+
   const categories = useMemo(
     () => {
-      const available = new Set(portfolioData.flatMap((item) => item.categories || []));
+      const available = new Set(images.flatMap((item) => item.categories || []));
       return [
         ...categoryOrder.filter((category) => available.has(category)),
         ...[...available].filter((category) => !categoryOrder.includes(category)),
       ];
     },
-    [portfolioData],
+    [images],
   );
-  const visibleItems = portfolioData.filter(
+  const visibleItems = images.filter(
     (item) => active === 'all' || item.categories?.includes(active),
   );
+  const dynamicEl = useMemo(
+    () =>
+      visibleItems.map((item) => ({
+        src: item.url,
+        thumb: item.previewUrl || item.url,
+        subHtml: item.caption || item.title || '',
+        alt: item.alt || item.description || item.caption || item.title || '',
+      })),
+    [visibleItems],
+  );
+  const columns = useMemo(() => {
+    const cols = Array.from({ length: columnCount }, () => []);
+    visibleItems.forEach((item, index) => {
+      cols[index % columnCount].push({ item, index });
+    });
+    return cols;
+  }, [visibleItems, columnCount]);
+
+  const handleInit = (detail) => {
+    lightGalleryRef.current = detail.instance;
+  };
+
+  const openGallery = (event, index) => {
+    event.preventDefault();
+    lightGalleryRef.current?.openGallery(index);
+  };
 
   return (
     <>
@@ -76,38 +114,55 @@ export default function MasonryGallery({ portfolioData = [] }) {
         </Div>
       </Div>
       <Spacing lg="90" md="45" />
-      <LightGallery speed={500} download={false} elementClassNames="cs-masonry_4_col">
-        {visibleItems.slice(0, itemShow).map((item) => {
-          const height = Math.max(299, Math.round(480 * (item.height / item.width)));
-          return (
-            <Div href={item.url} className="" key={item.publicId}>
-              <Div className="cs-portfolio cs-style1 cs-type2" style={{ height: `${height}px` }}>
-                <Div className="cs-lightbox_item">
-                  <ProgressiveImage item={item} height={height} />
-                </Div>
-                <Div className="cs-portfolio_hover" />
-                <span className="cs-plus" aria-hidden="true" />
+      <LightGallery
+        speed={500}
+        download={false}
+        elementClassNames="cs-masonry_cols"
+        dynamic
+        dynamicEl={dynamicEl}
+        onInit={handleInit}
+      >
+        {columns.map((columnItems, columnIndex) => (
+          <Div className="cs-masonry_col" key={columnIndex}>
+            {columnItems.map(({ item, index }) => (
+              <a
+                href={item.url}
+                className="cs-masonry_item"
+                data-sub-html={item.caption || item.title || ''}
+                key={item.publicId}
+                onClick={(event) => openGallery(event, index)}
+              >
                 <Div
-                  className="cs-portfolio_bg cs-bg"
-                  style={{ backgroundImage: `url("${item.previewUrl || item.url}")` }}
-                />
-                <Div className="cs-portfolio_info">
-                  <Div className="cs-portfolio_info_bg cs-accent_bg" />
-                  <h2 className="cs-portfolio_title">{item.title}</h2>
-                  <Div className="cs-portfolio_subtitle">{item.description}</Div>
+                  className="cs-portfolio cs-style1 cs-type2"
+                  style={{ height: 'auto', aspectRatio: `${item.width} / ${item.height}` }}
+                >
+                  <Div className="cs-lightbox_item">
+                    <ProgressiveImage item={item} />
+                  </Div>
+                  <Div className="cs-portfolio_hover" />
+                  <span className="cs-plus" aria-hidden="true" />
+                  <Div
+                    className="cs-portfolio_bg cs-bg"
+                    style={{ backgroundImage: `url("${item.previewUrl || item.url}")` }}
+                  />
+                  <Div className="cs-portfolio_info">
+                    <Div className="cs-portfolio_info_bg cs-accent_bg" />
+                    <h2 className="cs-portfolio_title">{item.title}</h2>
+                    <Div className="cs-portfolio_subtitle">{item.description}</Div>
+                  </Div>
                 </Div>
-              </Div>
-            </Div>
-          );
-        })}
+              </a>
+            ))}
+          </Div>
+        ))}
       </LightGallery>
       <Div className="container">
         <Div className="text-center">
-          {visibleItems.length > itemShow && (
+          {nextCursor && (
             <>
               <Spacing lg="65" md="40" />
-              <button type="button" className="cs-text_btn" onClick={() => setItemShow(itemShow + 4)}>
-                <span>Cargar más</span>
+              <button type="button" className="cs-load_more_btn" onClick={loadMore} disabled={loading}>
+                <span>{loading ? 'Cargando...' : 'Cargar más'}</span>
                 <Icon icon="bi:arrow-right" aria-hidden="true" />
               </button>
             </>
@@ -115,5 +170,18 @@ export default function MasonryGallery({ portfolioData = [] }) {
         </Div>
       </Div>
     </>
+  );
+}
+
+export default function MasonryGallery({ portfolioData = [], nextCursor = null, total, category }) {
+  return (
+    <PortfolioProvider
+      initialImages={portfolioData}
+      initialNextCursor={nextCursor}
+      total={total}
+      category={category}
+    >
+      <GalleryContent />
+    </PortfolioProvider>
   );
 }

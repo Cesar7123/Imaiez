@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Spacing from '@/app/ui/Spacing';
 import MasonryGallery from '@/app/ui/Gallery/MasonryGallery';
-import { getPortfolioImages } from '@/app/lib/portfolio';
+import { getPortfolioImages, getPortfolioPage } from '@/app/lib/portfolio';
 
 export async function generateStaticParams() {
   const images = await getPortfolioImages({ limit: 100 });
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
 
 export default async function PortfolioCategoryPage({ params }) {
   const { category } = await params;
-  const portfolio = await getPortfolioImages({ category, limit: 100 });
+  const portfolio = await getPortfolioPage({ category, limit: 25 });
   return (
     <>
       <Spacing lg="145" md="80" />
@@ -31,7 +31,7 @@ export default async function PortfolioCategoryPage({ params }) {
         <p>Una selección de imágenes de Imai Photo dentro de esta categoría.</p>
       </div>
       <Spacing lg="55" md="35" />
-      <MasonryGallery portfolioData={portfolio} />
+      <MasonryGallery portfolioData={portfolio.images} nextCursor={portfolio.nextCursor} total={portfolio.total} category={category} />
     </>
   );
 }

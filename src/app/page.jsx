@@ -1,82 +1,83 @@
-import Div from '@/app/ui/Div';
-import FunFact2 from '@/app/ui/FunFact/FunFact2';
-import MasonryGallery from '@/app/ui/Gallery/MasonryGallery';
-import Hero2 from '@/app/ui/Hero/Hero2';
-import Hero6 from '@/app/ui/Hero/Hero6';
-import PricingTableList from '@/app/ui/PricingTable/PricingTableList';
-import SectionHeading from '@/app/ui/SectionHeading';
-import PostSlider from '@/app/ui/Slider/PostSlider';
-import TestimonialSlider from '@/app/ui/Slider/TestimonialSlider';
-import Spacing from '@/app/ui/Spacing';
-import { Icon } from '@iconify/react';
-import Image from 'next/image';
+import Div from "@/app/ui/Div";
+import FunFact2 from "@/app/ui/FunFact/FunFact2";
+import MasonryGallery from "@/app/ui/Gallery/MasonryGallery";
+import Hero2 from "@/app/ui/Hero/Hero2";
+import Hero6 from "@/app/ui/Hero/Hero6";
+import PricingTableList from "@/app/ui/PricingTable/PricingTableList";
+import SectionHeading from "@/app/ui/SectionHeading";
+import PostSlider from "@/app/ui/Slider/PostSlider";
+import TestimonialSlider from "@/app/ui/Slider/TestimonialSlider";
+import Spacing from "@/app/ui/Spacing";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
 
-import aboutImg from '../../public/images/about_img_5.jpeg';
-import Card from './ui/Card';
-import { getAllPosts } from '@/app/lib/blog';
-import { getPortfolioImages } from '@/app/lib/portfolio';
-import { getOptimizedUrl } from '@/app/lib/cloudinary';
+import aboutImg from "../../public/images/about_img_5.jpeg";
+import Card from "./ui/Card";
+import { getAllPosts } from "@/app/lib/blog";
+import { getPortfolioPage } from "@/app/lib/portfolio";
+import { getOptimizedUrl } from "@/app/lib/cloudinary";
 
 export const metadata = {
-  title: 'Fotografía y cine con intención',
-  description: 'Imai Photo crea imágenes y películas para marcas, hoteles, restaurantes y personas.',
-  alternates: { canonical: '/' },
+  title: "Fotografía y cine con intención",
+  description:
+    "Imai Photo crea imágenes y películas para marcas, hoteles, restaurantes y personas.",
+  alternates: { canonical: "/" },
 };
 const heroSocialLinks = [
   {
-    name: 'Instagram',
-    links: 'https://www.instagram.com/imaiez',
+    name: "Instagram",
+    links: "https://www.instagram.com/imaiez",
   },
 ];
 const heroData = [
   {
-    title: 'Boda',
-    imageUrl: '/images/wedding.jpeg',
-    href: '/service/service-details',
+    title: "Boda",
+    imageUrl: "/images/wedding.jpeg",
+    href: "/service/service-details",
   },
   {
-    title: 'Moda',
-    imageUrl: '/images/fashion.jpeg',
-    href: '/service/service-details',
+    title: "Moda",
+    imageUrl: "/images/fashion.jpeg",
+    href: "/service/service-details",
   },
   {
-    title: 'Comercial',
-    imageUrl: '/images/commercial.jpeg',
-    href: '/service/service-details',
+    title: "Comercial",
+    imageUrl: "/images/commercial.jpeg",
+    href: "/service/service-details",
   },
   {
-    title: 'Paisaje',
-    imageUrl: '/images/landscape.jpeg',
-    href: '/service/service-details',
+    title: "Paisaje",
+    imageUrl: "/images/landscape.jpeg",
+    href: "/service/service-details",
   },
 ];
 const funfaceData = [
   {
-    title: 'Productos',
-    factNumber: '550',
+    title: "Productos",
+    factNumber: "550",
   },
   {
-    title: 'Clientes felices en todo el mundo',
-    factNumber: '40K',
+    title: "Clientes felices en todo el mundo",
+    factNumber: "40K",
   },
   {
-    title: 'Proyectos completados',
-    factNumber: '50k',
+    title: "Proyectos completados",
+    factNumber: "50k",
   },
   {
-    title: 'Miembros del equipo',
-    factNumber: '250',
+    title: "Miembros del equipo",
+    factNumber: "250",
   },
 ];
 
 const fallbackShowcaseData = [
-  '/images/landscape.jpeg',
-  '/images/wedding.jpeg',
-  '/images/fashion.jpeg',
+  "/images/landscape.jpeg",
+  "/images/wedding.jpeg",
+  "/images/fashion.jpeg",
 ].map((imgUrl) => ({
-  title: 'Imai Photo',
+  title: "Imai Photo",
   imgUrl,
-  href: '/portfolio',
+  href: "/portfolio",
 }));
 
 function getRandomLandscapeImages(images) {
@@ -84,23 +85,34 @@ function getRandomLandscapeImages(images) {
 
   for (let index = landscapes.length - 1; index > 0; index -= 1) {
     const randomIndex = Math.floor(Math.random() * (index + 1));
-    [landscapes[index], landscapes[randomIndex]] = [landscapes[randomIndex], landscapes[index]];
+    [landscapes[index], landscapes[randomIndex]] = [
+      landscapes[randomIndex],
+      landscapes[index],
+    ];
   }
 
   return landscapes.slice(0, 3);
 }
 
 export default async function PhotographyAgencyHome() {
-  const portfolio = await getPortfolioImages({ limit: 100 });
+  const portfolioPage = await getPortfolioPage({ limit: 25 });
+  const portfolio = portfolioPage.images;
   const posts = getAllPosts();
   const heroImages = getRandomLandscapeImages(portfolio);
-  const showcaseData = heroImages.length === 3
-    ? heroImages.map((image) => ({
-      title: image.title || 'Imai Photo',
-      imgUrl: getOptimizedUrl(image.url),
-      href: '/portfolio',
-    }))
-    : fallbackShowcaseData;
+  const showcaseData =
+    heroImages.length === 3
+      ? heroImages.map((image) => ({
+          title: image.caption || image.title || "Imai Photo",
+          alt:
+            image.alt ||
+            image.description ||
+            image.caption ||
+            image.title ||
+            "Imai Photo",
+          imgUrl: getOptimizedUrl(image.url),
+          href: "/portfolio",
+        }))
+      : fallbackShowcaseData;
 
   return (
     <>
@@ -115,7 +127,11 @@ export default async function PhotographyAgencyHome() {
 
       {/* Start Gallery Section */}
       <Spacing lg="145" md="80" />
-      <MasonryGallery portfolioData={portfolio} />
+      <MasonryGallery
+        portfolioData={portfolio}
+        nextCursor={portfolioPage.nextCursor}
+        total={portfolioPage.total}
+      />
       {/* End Gallery Section */}
 
       {/* Start Testimonial Section */}
@@ -178,7 +194,9 @@ export default async function PhotographyAgencyHome() {
                   <Spacing lg="20" md="20" />
                 </Div>
                 <Div className="col-sm-6">
-                  <label className="cs-primary_color">Correo Electrónico*</label>
+                  <label className="cs-primary_color">
+                    Correo Electrónico*
+                  </label>
                   <input type="text" className="cs-form_field" />
                   <Spacing lg="20" md="20" />
                 </Div>

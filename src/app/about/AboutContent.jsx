@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import Image from "next/image";
-import Hero from "../ui/Hero";
+import Link from "next/link";
+import { Icon } from "@iconify/react";
 import Cta from "@/app/ui/Cta";
 import Div from "@/app/ui/Div";
 import FunFact from "@/app/ui/FunFact";
@@ -9,64 +10,101 @@ import PageHeading from "@/app/ui/PageHeading";
 import SectionHeading from "@/app/ui/SectionHeading";
 import TeamSlider from "@/app/ui/Slider/TeamSlider";
 import Spacing from "@/app/ui/Spacing";
-import aboutImg from '../../../public/images/about_img_1.jpeg'
-import aboutImg2 from '../../../public/images/about_img_2.jpeg'
-import aboutImg3 from '../../../public/images/about_img_3.jpeg'
-import aboutImg4 from '../../../public/images/about_img_4.jpeg'
-
-// Hero Social Links
-const heroSocialLinks = [
-  {
-    name: 'Instagram',
-    links: 'https://www.instagram.com/imaiez',
-  },
-];
+import aboutImg from "../../../public/images/about_img_1.jpeg";
+import aboutImg2 from "../../../public/images/about_img_2.jpeg";
+import aboutImg3 from "../../../public/images/about_img_3.jpeg";
+import aboutImg4 from "../../../public/images/about_img_4.jpeg";
 
 const funfaceData = [
   {
-    title: 'Clientes Satisfechos en el Mundo',
-    factNumber: '40K',
+    title: "Clientes Satisfechos en el Mundo",
+    factNumber: "40K",
   },
   {
-    title: 'Proyectos Completados',
-    factNumber: '50K',
+    title: "Proyectos Completados",
+    factNumber: "50K",
   },
   {
-    title: 'Miembros del Equipo',
-    factNumber: '245',
+    title: "Miembros del Equipo",
+    factNumber: "245",
   },
   {
-    title: 'Productos Digitales',
-    factNumber: '550',
+    title: "Productos Digitales",
+    factNumber: "550",
   },
 ];
 
 export default function AboutContent({ aboutImage, heroImage }) {
+  const photoUrl = heroImage?.url || aboutImage?.url || aboutImg.src;
+  const photoAlt =
+    heroImage?.description ||
+    aboutImage?.description ||
+    "Imai — fotógrafo y cineasta";
+
   return (
     <>
-      {/* Start Page Heading Section */}
-      <Hero
-        title="Soy <br/>Imai"
-        subtitle="Soy fotógrafo y cineasta con X años de experiencia, especializado en la creación de contenido visual de alta calidad para restaurantes, hoteles y marcas del sector hostelero.<br/><br/>Mi trabajo combina la precisión técnica con un marcado enfoque narrativo, aportando dirección creativa y visión estratégica a cada proyecto. Colaboro con marcas que valoran la autenticidad, el detalle y la excelencia, desde el concepto hasta el resultado final..."
-        btnText=""
-        btnLink="/contact"
-        scrollDownId="#service"
-        socialLinksHeading="Síguenos"
-        heroSocialLinks={heroSocialLinks}
-        bgImageUrl={heroImage?.url || aboutImage?.url || aboutImg.src}
-        variant="cs-about_hero"
-      />
-      {/* End Page Heading Section */}
+      {/* Start Hero Section (Dark Studio Identity) */}
+      <section className="cs-studio_hero">
+        <div className="cs-studio_hero_glow" aria-hidden="true" />
+        <div className="cs-studio_hero_photo">
+          <img src={photoUrl} alt={photoAlt} fetchPriority="high" />
+        </div>
+        <div className="container cs-studio_hero_content">
+          <div className="cs-studio_hero_text">
+            <h1 className="cs-studio_title">
+              Tu imagen habla
+              <br />
+              antes que tú.
+            </h1>
+            <p className="cs-studio_subtitle">
+              ¿Conversamos sobre lo que está diciendo?
+            </p>
+            <p className="cs-studio_bio">
+              Fotógrafo y cineasta especializado en contenido visual de alta
+              calidad para restaurantes, hoteles y marcas del sector hostelero.
+              Precisión técnica, enfoque narrativo y dirección creativa en cada
+              proyecto.
+            </p>
+            <div className="cs-studio_pills">
+              <a
+                className="cs-studio_pill cs-studio_pill_primary"
+                href="https://www.instagram.com/imaiez"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon icon="bi:instagram" aria-hidden="true" />
+                @imaiez
+              </a>
+              <Link
+                className="cs-studio_pill cs-studio_pill_ghost"
+                href="/portfolio"
+              >
+                Portafolio
+              </Link>
+            </div>
+            <Link href="/contact" className="cs-studio_cta">
+              Solicita tu presupuesto
+              <span>-</span>
+              <Icon icon="bi:arrow-right" aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+        <a
+          href="#about"
+          className="cs-studio_scroll"
+          aria-label="Desplazar hacia abajo"
+        >
+          <Icon icon="bi:arrow-down" aria-hidden="true" />
+        </a>
+      </section>
+      {/* End Hero Section */}
 
       {/* Start About Section */}
       <Spacing lg="150" md="80" />
-      <Div className="container">
+      <Div className="container" id="about">
         <Div className="row">
           <Div className="col-xl-5 col-lg-7">
-            <SectionHeading
-              title="Tu aliado de confianza"
-              subtitle="IMAI"
-            >
+            <SectionHeading title="Tu aliado de confianza" subtitle="IMAI">
               <Spacing lg="30" md="20" />
               <p className="cs-m0">
                 Este es el factor principal que nos diferencia de la competencia
@@ -84,26 +122,10 @@ export default function AboutContent({ aboutImage, heroImage }) {
           <Div className="col-lg-5 offset-xl-2">
             <img
               src={aboutImage?.url || aboutImg.src}
-              alt={aboutImage?.description || 'Acerca de Imai'}
+              alt={aboutImage?.description || "Acerca de Imai"}
               width={aboutImage?.width || 1200}
               height={aboutImage?.height || 800}
               loading="lazy"
-              className="w-100 cs-radius_15"
-            />
-            <Spacing lg="25" md="25" />
-          </Div>
-          <Div className="col-lg-7">
-            <Image
-              src={aboutImg2}
-              alt="Acerca de"
-              className="w-100 cs-radius_15"
-            />
-            <Spacing lg="25" md="25" />
-          </Div>
-          <Div className="col-lg-5">
-            <Image
-              src={aboutImg3}
-              alt="Acerca de"
               className="w-100 cs-radius_15"
             />
             <Spacing lg="25" md="25" />
@@ -112,16 +134,6 @@ export default function AboutContent({ aboutImage, heroImage }) {
       </Div>
       <Spacing lg="75" md="55" />
       {/* End About Section */}
-
-      {/* Start Fun Fact Section */}
-      {/* <Div className="container">
-        <FunFact
-          title="Nuestro dato curioso"
-          subtitle="Texto descriptivo breve sobre un dato interesante de la agencia y su trayectoria profesional."
-          data={funfaceData}
-        />
-      </Div>*/}
-      {/* End Fun Fact Section */}
 
       {/* Start Why Choose Section */}
       <Spacing lg="100" md="80" />

@@ -41,35 +41,37 @@ const testimonialData = [
   },
 ];
 
+const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+  <div
+    {...props}
+    className={
+      "slick-prev slick-arrow" + (currentSlide === 0 ? " slick-disabled" : "")
+    }
+    aria-hidden="true"
+    aria-disabled={currentSlide === 0}
+  >
+    <Icon icon="bi:arrow-left" />
+  </div>
+);
+
+const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+  <div
+    {...props}
+    className={
+      "slick-next slick-arrow" +
+      (currentSlide === slideCount - 1 ? " slick-disabled" : "")
+    }
+    aria-hidden="true"
+    aria-disabled={currentSlide === slideCount - 1}
+  >
+    <Icon icon="bi:arrow-right" />
+  </div>
+);
+
 export default function TestimonialSlider() {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
 
-  const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <div
-      {...props}
-      className={
-        "slick-prev slick-arrow" + (currentSlide === 0 ? " slick-disabled" : "")
-      }
-      aria-hidden="true"
-      aria-disabled={currentSlide === 0 ? true : false}
-    >
-      <Icon icon="bi:arrow-left" />
-    </div>
-  );
-  const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <div
-      {...props}
-      className={
-        "slick-next slick-arrow" +
-        (currentSlide === slideCount - 1 ? " slick-disabled" : "")
-      }
-      aria-hidden="true"
-      aria-disabled={currentSlide === slideCount - 1 ? true : false}
-    >
-      <Icon icon="bi:arrow-right" />
-    </div>
-  );
   return (
     <>
       <Div className="cs-gradient_bg_1 cs-shape_wrap_3 cs-parallax">

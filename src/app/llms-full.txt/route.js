@@ -6,7 +6,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
 export async function GET() {
   const [posts, images] = await Promise.all([Promise.resolve(getAllPosts()), getPortfolioImages()]);
   const body = [
-    '# Imai Photo: machine-readable content index',
+    '# IMAI - Churea Producciones (Imai Photo): machine-readable content index',
+    '',
+    '## Business',
+    '- Name: IMAI - Churea Producciones (also known as Imai Photo, Churea Producciones)',
+    '- Location: La Paz, Baja California Sur, México',
+    '- Services: fotografía gastronómica, de hoteles, bodas, retrato, paisaje y comercial; cine y video',
+    '- Instagram: https://www.instagram.com/imaiez',
     '',
     '## Portfolio images',
     ...images.map((image) => `- [${image.title}](${image.url}): ${image.description}. Categories: ${image.categories.join(', ')}.`),

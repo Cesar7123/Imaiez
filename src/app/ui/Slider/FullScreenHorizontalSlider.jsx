@@ -41,6 +41,8 @@ export default function FullScreenHorizontalSlider({ data }) {
             <Div
               className="cs-hero cs-style4 cs-bg"
               style={{ backgroundImage: `url(${item.imgUrl})` }}
+              role="img"
+              aria-label={item.alt || item.title || "Imai Photo"}
             >
               <a className="cs-hero_link" />
               <Div className="cs-hero_text">

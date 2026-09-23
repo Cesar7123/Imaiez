@@ -30,7 +30,7 @@ export default function Footer({ copyrightText, logoSrc, logoAlt, text }) {
                 <TextWidget
                   logoSrc="/images/footer_logo.svg"
                   logoAlt="Logo"
-                  text={parse("Bienvenido a Imaiez. <br/> Capturamos momentos y creamos recuerdos que perduran para siempre.")}
+                  text={parse("Bienvenido a IMAI - Churea Producciones. <br/> Capturamos momentos y creamos recuerdos que perduran para siempre.")}
                 />
                 <SocialWidget />
               </Div>
@@ -47,7 +47,7 @@ export default function Footer({ copyrightText, logoSrc, logoAlt, text }) {
         <Div className="cs-bottom_footer">
           <Div className="cs-bottom_footer_left">
             <Div className="cs-copyright">
-              Copyright © {`${date}`} Imaiez.
+              Copyright © {`${date}`} IMAI - Churea Producciones.
             </Div>
           </Div>
           <Div className="cs-bottom_footer_right">

@@ -39,7 +39,7 @@ export default async function BlogDetailsPage({ params }) {
       <Div className="container blog-detail">
         <Link href="/blog" className="blog-back">← Volver al blog</Link>
         <article className="cs-post cs-style2">
-          <img src={post.image} alt="" className="blog-detail_image cs-radius_15" />
+          <img src={post.image} alt={post.title} className="blog-detail_image cs-radius_15" />
           <div className="cs-post_info">
             <div className="cs-post_meta cs-style1 cs-ternary_color cs-semi_bold cs-primary_font">
               <span>{post.date}</span>

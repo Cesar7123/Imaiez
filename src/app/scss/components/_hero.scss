@@ -155,47 +155,258 @@
   }
 }
 
-.cs-about_hero {
-  background-color: $cream-card;
-  background-position: 82% center;
-  background-repeat: no-repeat;
-  background-size: auto 92%;
+/* About — Dark Studio Identity Hero */
+$studio-black: #121212;
+$studio-gray: #4a4d50;
+$studio-text-secondary: #9e9e9e;
+
+.cs-studio_hero {
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
+  background-color: $studio-black;
+  overflow: hidden;
+  isolation: isolate;
 
-  .cs-hero_text {
-    width: min(100%, 560px);
-    margin-right: auto;
-    max-width: 560px;
-    padding: 34px 38px;
-    border: 1px solid rgba($white, 0.38);
-    border-radius: 24px;
-    background: rgba($black, 0.34);
-    box-shadow: 0 18px 45px rgba($black, 0.14);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+  .cs-studio_hero_glow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(
+        ellipse 80% 70% at 68% 38%,
+        rgba($studio-gray, 0.55) 0%,
+        rgba($studio-gray, 0.18) 45%,
+        transparent 75%
+      );
+    pointer-events: none;
   }
 
-  .container {
+  .cs-studio_hero_photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 52%;
+    z-index: 1;
+    pointer-events: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(0, 0, 0, 0.85) 22%,
+          #000 45%
+        ),
+        linear-gradient(to top, transparent 0%, #000 18%);
+      mask-composite: intersect;
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.85) 22%,
+        #000 45%
+      );
+      -webkit-mask-composite: source-in;
+    }
+  }
+
+  .cs-studio_hero_content {
     position: relative;
     z-index: 2;
+    padding-top: 140px;
+    padding-bottom: 100px;
   }
 
-  .cs-hero_title,
-  .cs-hero_subtitle {
-    color: $white;
+  .cs-studio_hero_text {
+    max-width: 620px;
+  }
+
+  .cs-studio_title {
+    font-family: var(--primary-font), 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: clamp(44px, 6vw, 84px);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 22px;
+    text-align: left;
+  }
+
+  .cs-studio_subtitle {
+    font-size: clamp(19px, 2vw, 26px);
+    font-weight: 400;
+    color: $studio-text-secondary;
+    margin-bottom: 18px;
+  }
+
+  .cs-studio_bio {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(#ffffff, 0.72);
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+
+  .cs-studio_pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+
+  .cs-studio_pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 9999px;
+    padding: 14px 28px;
+    min-height: 48px;
+    font-family: var(--primary-font), sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+
+    svg {
+      font-size: 18px;
+    }
+  }
+
+  .cs-studio_pill_primary {
+    background: #ffffff;
+    color: $studio-black;
+    font-weight: 600;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(#ffffff, 0.22);
+      color: $studio-black;
+    }
+  }
+
+  .cs-studio_pill_ghost {
+    background: rgba(#ffffff, 0.15);
+    border: 1px solid rgba(#ffffff, 0.3);
+    color: #ffffff;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    &:hover {
+      background: rgba(#ffffff, 0.24);
+      border-color: rgba(#ffffff, 0.45);
+      transform: translateY(-2px);
+      color: #ffffff;
+    }
+  }
+
+  .cs-studio_cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--primary-font), sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 2px;
+    border-bottom: 1px solid rgba(#ffffff, 0.3);
+    transition: border-color 0.2s ease, gap 0.2s ease;
+
+    span {
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: $studio-text-secondary;
+    }
+
+    svg {
+      font-size: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  .cs-studio_scroll {
+    position: absolute;
+    left: 40px;
+    bottom: 36px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(#ffffff, 0.3);
+    background: rgba(#ffffff, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #ffffff;
+    font-size: 20px;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s ease;
+
+    &:hover {
+      background: rgba(#ffffff, 0.2);
+      transform: translateY(3px);
+      color: #ffffff;
+    }
   }
 }
 
-@media screen and (max-width: 767px) {
-  .cs-about_hero {
-    background-position: 75% bottom;
-    background-size: auto 52%;
+@media screen and (max-width: 991px) {
+  .cs-studio_hero {
+    .cs-studio_hero_photo {
+      width: 100%;
+      opacity: 0.32;
 
-    .cs-hero_text {
-      margin: 0 15px;
-      padding: 24px;
+      img {
+        mask-image: linear-gradient(to top, transparent 0%, #000 55%);
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 55%);
+      }
     }
+
+    .cs-studio_hero_content {
+      padding-top: 120px;
+    }
+
+    .cs-studio_scroll {
+      left: 50%;
+      transform: translateX(-50%);
+
+      &:hover {
+        transform: translateX(-50%) translateY(3px);
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-studio_hero * {
+    transition-duration: 0.01ms !important;
   }
 }
 

@@ -1336,11 +1336,32 @@ label {
 }
 
 .cs-masonry_4_col {
-  column-count: 4;
-  column-gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 25px;
   padding: 0 25px;
   > * {
-    margin-bottom: 25px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+  }
+}
+
+.cs-masonry_cols {
+  display: flex;
+  align-items: flex-start;
+  gap: 25px;
+  padding: 0 25px;
+  .cs-masonry_col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  .cs-masonry_item {
+    display: block;
+    width: 100%;
     cursor: pointer;
   }
 }
@@ -1397,7 +1418,7 @@ label {
     font-size: 60px;
   }
   .cs-masonry_4_col {
-    column-count: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .cs-half_of_full_width {
     width: 100%;
@@ -1546,7 +1567,7 @@ label {
     }
   }
   .cs-masonry_4_col {
-    column-count: 1;
+    grid-template-columns: 1fr;
   }
 }
 .cs-grid_gallery_5 {

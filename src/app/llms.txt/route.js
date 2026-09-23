@@ -1,9 +1,9 @@
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
 
 export function GET() {
-  const body = `# Imai Photo
+  const body = `# IMAI - Churea Producciones (Imai Photo)
 
-> Fotografía y cine editorial para restaurantes, hoteles, marcas y personas.
+> Fotografía y cine editorial para restaurantes, hoteles, marcas y personas. Basados en La Paz, Baja California Sur, México.
 
 ## Canonical pages
 - ${siteUrl}/: Página principal y servicios visuales.

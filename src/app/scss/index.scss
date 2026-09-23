@@ -223,6 +223,56 @@ textarea:focus-visible {
   padding: 7px 0;
 }
 
+.cs-load_more_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 16px 42px;
+  border: 2px solid $accent;
+  border-radius: 999px;
+  background: transparent;
+  color: $accent;
+  font-family: var(--primary-font), sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+
+  svg {
+    font-size: 20px;
+    transition: transform 0.25s ease;
+  }
+
+  &:hover:not(:disabled) {
+    background: $accent;
+    color: $white;
+    box-shadow: 0 10px 25px rgba($accent, 0.35);
+    transform: translateY(-2px);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba($accent, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
 .portfolio-category_links {
   display: flex;
   flex-wrap: wrap;

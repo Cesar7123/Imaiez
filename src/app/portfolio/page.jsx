@@ -1,6 +1,6 @@
 import Spacing from '@/app/ui/Spacing';
 import MasonryGallery from '@/app/ui/Gallery/MasonryGallery';
-import { getPortfolioImages } from '@/app/lib/portfolio';
+import { getPortfolioPage } from '@/app/lib/portfolio';
 
 export const metadata = {
   title: 'Portafolio de fotografía',
@@ -9,11 +9,11 @@ export const metadata = {
 };
 
 export default async function PortfolioPage() {
-  const portfolio = await getPortfolioImages({ limit: 100 });
+  const portfolio = await getPortfolioPage({ limit: 25 });
   return (
     <>
       <Spacing lg="145" md="80" />
-      <MasonryGallery portfolioData={portfolio} />
+      <MasonryGallery portfolioData={portfolio.images} nextCursor={portfolio.nextCursor} total={portfolio.total} />
     </>
   );
 }

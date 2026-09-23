@@ -61,35 +61,32 @@ const teamData = [
   },
 ];
 
+const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+  <div
+    {...props}
+    className={'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')}
+    aria-hidden="true"
+    aria-disabled={currentSlide === 0}
+  >
+    <Icon icon="bi:arrow-left" />
+  </div>
+);
+
+const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+  <div
+    {...props}
+    className={'slick-next slick-arrow' + (currentSlide === slideCount - 1 ? ' slick-disabled' : '')}
+    aria-hidden="true"
+    aria-disabled={currentSlide === slideCount - 1}
+  >
+    <Icon icon="bi:arrow-right" />
+  </div>
+);
+
 export default function TeamSlider() {
   /** Team Member Data **/
 
   /** Slider Settings **/
-  const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
-    <div
-      {...props}
-      className={
-        'slick-prev slick-arrow' + (currentSlide === 0 ? ' slick-disabled' : '')
-      }
-      aria-hidden="true"
-      aria-disabled={currentSlide === 0 ? true : false}
-    >
-      <Icon icon="bi:arrow-left" />
-    </div>
-  );
-  const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
-    <div
-      {...props}
-      className={
-        'slick-next slick-arrow' +
-        (currentSlide === slideCount - 1 ? ' slick-disabled' : '')
-      }
-      aria-hidden="true"
-      aria-disabled={currentSlide === slideCount - 1 ? true : false}
-    >
-      <Icon icon="bi:arrow-right" />
-    </div>
-  );
   const settings = {
     dots: false,
     infinite: true,
